@@ -13,10 +13,7 @@ def create
   end
 end
 
-def index 
-  users = Users.all
-  render json: users.as_json
-end 
+
 
 
 
