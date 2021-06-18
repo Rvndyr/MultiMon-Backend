@@ -20,12 +20,12 @@ class PagesController < ApplicationController
     render json: JSON.parse(response.body)
   end
 
-  # def spotify_user_info
-  #   response = HTTP
-  #     .headers("Authorization" => "Bearer #{params[:spotify_access_token]}")
-  #     .get("https://api.spotify.com/v1/me")
-  #   render json: JSON.parse(response.body)
-  # end
+  def twitch_user_info
+    response = HTTP
+      .headers("Authorization" => "Bearer #{params[:twitch_access_token]}")
+      .get("https://api.twitch.tv/helix/users")
+    render json: JSON.parse(response.body)
+  end
 
   # def spotify_search
   #   response = HTTP
