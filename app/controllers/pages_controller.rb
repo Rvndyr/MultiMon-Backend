@@ -23,7 +23,7 @@ class PagesController < ApplicationController
   def twitch_user_info
     response = HTTP
       .headers("Authorization" => "Bearer #{params[:twitch_access_token]}")
-      .get("https://api.twitch.tv/helix/users")
+      .get("https://api.twitch.tv/helix/streams/followed")
     render json: JSON.parse(response.body)
   end
 
