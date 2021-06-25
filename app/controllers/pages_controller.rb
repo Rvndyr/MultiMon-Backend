@@ -1,22 +1,7 @@
 class PagesController < ApplicationController
 
-  # def newsapi_headlines
-  #   response = HTTP.get("https://newsapi.org/v2/top-headlines?country=us&apiKey=#{Rails.application.credentials.news_api_key}")
-  #   articles = JSON.parse(response.body)["articles"]
-  #   render json: articles
-  # end
-  # Twitch.configure do |config|
-  #   config.client_id = Rails.application.credentials.twitch_client_id,
-  #   config.api = Twitch::V2
-  # end
-  
-  # client_a = Twitch.instance do |config|
-  #   config.client_id = Rails.application.credentials.twitch_client_id
-  # end
-  # channel = client_b.channels.get('lookitslou')
-  # puts "#{channel}"
-
   def twitch_authorize
+    # get access token from front end url. 
     response = HTTP.post(
       "https://id.twitch.tv/oauth2/token",
       form: {
@@ -37,15 +22,14 @@ class PagesController < ApplicationController
       .headers("Authorization" => "Bearer #{params[:twitch_access_token]}", "Client-Id"=>Rails.application.credentials.twitch_client_id)
       .get("https://api.twitch.tv/helix/users")
     twitch_user_id = response.parse(:json)["data"][0]["id"]
-    puts "HELLO"
-    pp twitch_user_id
+    current_user = response.parse(:json)["data"][0]
+    puts "Current User Info:"
+    pp current_user
     # get twitch follows using user id
     response = HTTP
       .headers("Authorization" => "Bearer #{params[:twitch_access_token]}", "Client-Id"=>Rails.application.credentials.twitch_client_id)
       .get("https://api.twitch.tv/helix/streams/followed?user_id=#{twitch_user_id}")
-
-      
-    render json: JSON.parse(response.body)
+    render json: {user: current_user, follows: JSON.parse(response.body)["data"]}
   end
 
   
