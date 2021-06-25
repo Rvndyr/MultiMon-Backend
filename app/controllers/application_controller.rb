@@ -1,5 +1,5 @@
-class ApplicationController < ActionController::API
-  class ApplicationController < ActionController::API
+
+ class ApplicationController < ActionController::API
     def current_user
       auth_headers = request.headers["Authorization"]
       if auth_headers.present? && auth_headers[/(?<=\A(Bearer ))\S+\z/]
@@ -24,4 +24,4 @@ class ApplicationController < ActionController::API
       end
     end
   end
-end
+

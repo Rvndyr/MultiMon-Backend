@@ -39,7 +39,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 # gem for Twitch api wrapper:
-# gem install kappa
 # gem 'kappa', '~> 1.0'
 # gem 'twitch-api'
 gem 'twitch', '~> 0.1.0'
