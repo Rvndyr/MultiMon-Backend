@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   post "/twitch_authorize" => "pages#twitch_authorize"
   
   # edit these routes:
-# get "/newsapi_headlines" => "pages#newsapi_headlines"
-get "/twitch_user_info" => "pages#twitch_user_info"
-# get "/spotify_search" => "pages#spotify_search"
+  get "/twitch_user_info" => "pages#twitch_user_info"
+
 
 end
