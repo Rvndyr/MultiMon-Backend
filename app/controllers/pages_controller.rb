@@ -9,10 +9,12 @@ class PagesController < ApplicationController
         client_secret: Rails.application.credentials.twitch_client_secret,
         code: params[:code],
         grant_type: "authorization_code",
-        redirect_uri: Rails.application.credentials.twitch[:redirect_uri],
+        redirect_uri: Rails.application.credentials.twitch.redirect_uri,
         
       },
+    
     )
+  
     render json: JSON.parse(response.body)
   end
 
@@ -21,7 +23,7 @@ class PagesController < ApplicationController
     response = HTTP
       .headers("Authorization" => "Bearer #{params[:twitch_access_token]}", "Client-Id"=>Rails.application.credentials.twitch_client_id)
       .get("https://api.twitch.tv/helix/users")
-      pp response.parse(:json)
+      # pp response.parse(:json)
     twitch_user_id = response.parse(:json)["data"][0]["id"]
     current_user = response.parse(:json)["data"][0]
     # get twitch follows using user id
