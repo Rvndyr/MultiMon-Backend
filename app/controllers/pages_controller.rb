@@ -9,7 +9,7 @@ class PagesController < ApplicationController
         client_secret: Rails.application.credentials.twitch_client_secret,
         code: params[:code],
         grant_type: "authorization_code",
-        redirect_uri: Rails.application.credentials.redirect_uri,
+        redirect_uri: Rails.application.credentials.twitch[:redirect_uri],
         
       },
     )
