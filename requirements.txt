@@ -1,0 +1,4 @@
+fastapi
+uvicorn #ASGI server to run FastAPI
+httpx #HTTP client for making API requests (used for Twitch API calls)
+python-dotenv #Load environment variables from a .env file
